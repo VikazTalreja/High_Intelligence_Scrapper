@@ -825,7 +825,7 @@ export default function Home() {
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Product Range</p>
-                            <p className="text-base">{engagement.productQuality.productRangeAvailabilit   ?? "N/A"y}</p>
+                            <p className="text-base">{engagement.productQuality.productRangeAvailability   ?? "N/A"y}</p>
                           </div>
                         </div>
                       </div>
