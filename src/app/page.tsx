@@ -806,11 +806,11 @@ export default function Home() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Market Share</p>
-                            <p className="text-base">{engagement.marketPosition.marketShare}</p>
+                            <p className="text-base">{engagement.marketPosition.marketShare   ?? "N/A"}</p>
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Regional Strengths</p>
-                            <p className="text-base">{engagement.marketPosition.regionalStrengths}</p>
+                            <p className="text-base">{engagement.marketPosition.regionalStrengths   ?? "N/A"}</p>
                           </div>
                         </div>
                       </div>
@@ -821,11 +821,11 @@ export default function Home() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Quality Certifications</p>
-                            <p className="text-base">{engagement.productQuality.qualityCertifications}</p>
+                            <p className="text-base">{engagement.productQuality.qualityCertifications   ?? "N/A"}</p>
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Product Range</p>
-                            <p className="text-base">{engagement.productQuality.productRangeAvailability}</p>
+                            <p className="text-base">{engagement.productQuality.productRangeAvailabilit   ?? "N/A"y}</p>
                           </div>
                         </div>
                       </div>
@@ -838,11 +838,11 @@ export default function Home() {
                           <div className="space-y-4">
                             <div className="border rounded-lg p-4">
                               <p className="text-sm font-medium mb-2">Delivery Timeframes</p>
-                              <p className="text-base">{engagement.deliveryLogistics.deliveryTimeframes}</p>
+                              <p className="text-base">{engagement.deliveryLogistics.deliveryTimeframes   ?? "N/A"}</p>
                             </div>
                             <div className="border rounded-lg p-4">
                               <p className="text-sm font-medium mb-2">Geographic Coverage</p>
-                              <p className="text-base">{engagement.deliveryLogistics.geographicCoverage}</p>
+                              <p className="text-base">{engagement.deliveryLogistics.geographicCoverage   ?? "N/A"}</p>
                             </div>
                           </div>
                         </div>
@@ -853,11 +853,11 @@ export default function Home() {
                           <div className="space-y-4">
                             <div className="border rounded-lg p-4">
                               <p className="text-sm font-medium mb-2">Credit Terms</p>
-                              <p className="text-base">{engagement.financialStability.creditTermsComparison}</p>
+                              <p className="text-base">{engagement.financialStability.creditTermsComparison   ?? "N/A"}</p>
                             </div>
                             <div className="border rounded-lg p-4">
                               <p className="text-sm font-medium mb-2">Risk Assessment</p>
-                              <p className="text-base">{engagement.financialStability.riskAssessment}</p>
+                              <p className="text-base">{engagement.financialStability.riskAssessment   ?? "N/A"}</p>
                             </div>
                           </div>
                         </div>
@@ -869,11 +869,11 @@ export default function Home() {
                         <div className="space-y-4">
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Key Differentiators</p>
-                            <p className="text-base">{engagement.strategicRecommendations.keyDifferentiators}</p>
+                            <p className="text-base">{engagement.strategicRecommendations.keyDifferentiators   ?? "N/A"}</p>
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Negotiation Leverage Points</p>
-                            <p className="text-base">{engagement.strategicRecommendations.negotiationLeveragePoints}</p>
+                            <p className="text-base">{engagement.strategicRecommendations.negotiationLeveragePoints   ?? "N/A"}</p>
                           </div>
                         </div>
                       </div>
