@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const CompetitorCard = ({ competitor }) => {
+const CompetitorCard = ({ competitor }: { competitor: any }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ const CompetitorCard = ({ competitor }) => {
         <div className="mt-2">
           <h4 className="text-xs font-medium uppercase text-apple-gray-400">Battle Cards:</h4>
           <ul className="list-disc pl-5 text-sm text-apple-gray-500">
-            {competitor.battleCards.map((card, index) => (
+            {competitor.battleCards.map((card: any, index: any) => (
               <li key={index}>{card}</li>
             ))}
           </ul>

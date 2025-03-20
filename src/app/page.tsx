@@ -18,18 +18,18 @@ interface ContactDetails {
 }
 
 interface BasicCompanyDetails {
-  "Legal_Name": string;
+  "Legal Name": string;
   "CIN": string;
-  "Registration_Date": string;
-  "Company_Type": string;
-  "Registered_Office": string;
-  "Contact_Details": ContactDetails;
+  "Registration Date": string;
+  "Company Type": string;
+  "Registered Office": string;
+  "Contact Details": ContactDetails;
 }
 
 interface LegalComplianceDetails {
-  "ROC_Office": string;
+  "ROC Office": string;
   "Active_Compliance_Status_MCA21": string;
-  "List_of_Directors": Director[];
+  "List of Directors": Director[];
 }
 
 interface FinancialHealthStatus {
@@ -39,7 +39,7 @@ interface FinancialHealthStatus {
 interface CompanyData {
   data: {
     Basic_Company_Details: BasicCompanyDetails;
-    "Legal_&_Compliance_Details": LegalComplianceDetails;
+    "Legal & Compliance Details": LegalComplianceDetails;
     "Financial_Health_&_Cash_Rich_Status": FinancialHealthStatus;
   };
 }
@@ -83,6 +83,35 @@ interface ProcurementExecutive {
   };
 }
 
+interface CompetitorAnalysis {
+  competitor: string;
+  priceComparison: {
+    jswSteelPrice: string;
+    competitorPrice: string;
+    percentageDifference: string;
+  };
+  marketPosition: {
+    marketShare: string;
+    regionalStrengths: string;
+  };
+  productQuality: {
+    qualityCertifications: string;
+    productRangeAvailability: string;
+  };
+  deliveryLogistics: {
+    deliveryTimeframes: string;
+    geographicCoverage: string;
+  };
+  financialStability: {
+    creditTermsComparison: string;
+    riskAssessment: string;
+  };
+  strategicRecommendations: {
+    keyDifferentiators: string;
+    negotiationLeveragePoints: string;
+  };
+}
+
 interface ApiResponseType {
   success: boolean;
   timestamp: string;
@@ -106,9 +135,10 @@ interface ApiResponseType {
   aiInsights?: {
     synthesizedData: string;
   };
+  CompetitorsEngagement?: CompetitorAnalysis[];
 }
 
-// Initial competitors list
+// Initial list
 const initialCompetitors = [
   { name: 'TATA Steel', selected: false },
   { name: 'JSPL', selected: false },
@@ -746,7 +776,7 @@ export default function Home() {
                     {/* Header */}
                     <div className="border-b border-gray-200 px-6 py-4">
                       <h3 className="text-xl font-semibold">
-                        JSW Steel vs {engagement.competitor}
+                        JSW Steel vs {engagement?.competitor}
                       </h3>
                     </div>
                     
@@ -758,15 +788,15 @@ export default function Home() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">JSW Steel Price</p>
-                            <p className="text-base">{engagement.analysis.analysis.priceComparison.jswSteelPrice}</p>
+                            <p className="text-base">{engagement?.priceComparison.jswSteelPrice}</p>
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Competitor Price</p>
-                            <p className="text-base">{engagement.analysis.analysis.priceComparison.competitorPrice}</p>
+                            <p className="text-base">{engagement?.priceComparison.competitorPrice}</p>
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Price Difference</p>
-                            <p className="text-base">{engagement.analysis.analysis.priceComparison.percentageDifference}</p>
+                            <p className="text-base">{engagement?.priceComparison.percentageDifference}</p>
                           </div>
                         </div>
                       </div>
@@ -777,11 +807,11 @@ export default function Home() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Market Share</p>
-                            <p className="text-base">{engagement.analysis.analysis.marketPosition.marketShare}</p>
+                            <p className="text-base">{engagement.marketPosition.marketShare}</p>
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Regional Strengths</p>
-                            <p className="text-base">{engagement.analysis.analysis.marketPosition.regionalStrengths}</p>
+                            <p className="text-base">{engagement.marketPosition.regionalStrengths}</p>
                           </div>
                         </div>
                       </div>
@@ -792,11 +822,11 @@ export default function Home() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Quality Certifications</p>
-                            <p className="text-base">{engagement.analysis.analysis.productQuality.qualityCertifications}</p>
+                            <p className="text-base">{engagement.productQuality.qualityCertifications}</p>
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Product Range</p>
-                            <p className="text-base">{engagement.analysis.analysis.productQuality.productRangeAvailability}</p>
+                            <p className="text-base">{engagement.productQuality.productRangeAvailability}</p>
                           </div>
                         </div>
                       </div>
@@ -809,11 +839,11 @@ export default function Home() {
                           <div className="space-y-4">
                             <div className="border rounded-lg p-4">
                               <p className="text-sm font-medium mb-2">Delivery Timeframes</p>
-                              <p className="text-base">{engagement.analysis.analysis.deliveryLogistics.deliveryTimeframes}</p>
+                              <p className="text-base">{engagement.deliveryLogistics.deliveryTimeframes}</p>
                             </div>
                             <div className="border rounded-lg p-4">
                               <p className="text-sm font-medium mb-2">Geographic Coverage</p>
-                              <p className="text-base">{engagement.analysis.analysis.deliveryLogistics.geographicCoverage}</p>
+                              <p className="text-base">{engagement.deliveryLogistics.geographicCoverage}</p>
                             </div>
                           </div>
                         </div>
@@ -824,11 +854,11 @@ export default function Home() {
                           <div className="space-y-4">
                             <div className="border rounded-lg p-4">
                               <p className="text-sm font-medium mb-2">Credit Terms</p>
-                              <p className="text-base">{engagement.analysis.analysis.financialStability.creditTermsComparison}</p>
+                              <p className="text-base">{engagement.financialStability.creditTermsComparison}</p>
                             </div>
                             <div className="border rounded-lg p-4">
                               <p className="text-sm font-medium mb-2">Risk Assessment</p>
-                              <p className="text-base">{engagement.analysis.analysis.financialStability.riskAssessment}</p>
+                              <p className="text-base">{engagement.financialStability.riskAssessment}</p>
                             </div>
                           </div>
                         </div>
@@ -840,11 +870,11 @@ export default function Home() {
                         <div className="space-y-4">
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Key Differentiators</p>
-                            <p className="text-base">{engagement.analysis.analysis.strategicRecommendations.keyDifferentiators}</p>
+                            <p className="text-base">{engagement.strategicRecommendations.keyDifferentiators}</p>
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Negotiation Leverage Points</p>
-                            <p className="text-base">{engagement.analysis.analysis.strategicRecommendations.negotiationLeveragePoints}</p>
+                            <p className="text-base">{engagement.strategicRecommendations.negotiationLeveragePoints}</p>
                           </div>
                         </div>
                       </div>
