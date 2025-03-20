@@ -787,15 +787,15 @@ export default function Home() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">JSW Steel Price</p>
-                            <p className="text-base">{engagement?.priceComparison?.jswSteelPrice}</p>
+                            <p className="text-base">{engagement?.priceComparison?.jswSteelPrice ?? "N/A"}</p>
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Competitor Price</p>
-                            <p className="text-base">{engagement?.priceComparison?.competitorPrice}</p>
+                            <p className="text-base">{engagement?.priceComparison?.competitorPrice  ?? "N/A"}</p>
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Price Difference</p>
-                            <p className="text-base">{engagement?.priceComparison?.percentageDifference}</p>
+                            <p className="text-base">{engagement?.priceComparison?.percentageDifference  ?? "N/A"}</p>
                           </div>
                         </div>
                       </div>
