@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import type { FormData, ApiResponse } from '@/types';
+import { useRouter } from 'next/navigation';
 
 // Type definitions for API response
 interface Director {
@@ -141,7 +142,6 @@ interface ApiResponseType {
 const initialCompetitors = [
   { name: 'TATA Steel', selected: false },
   { name: 'JSPL', selected: false },
-  { name: 'Essar Steel', selected: false },
   { name: 'SAIL', selected: false },
   { name: 'Arcelor Mittal/Nippon Steel (AM/NS)', selected: false },
 ];
@@ -158,6 +158,200 @@ const mockApiResponse = {
   },
 };
 
+const Contactresponse={
+  "status_code": 200,
+  "profile": {
+      "url": "https://www.linkedin.com/in/pavan-meragu",
+      "email": [
+          "pavanvm456@gmail.com"
+      ],
+      "work_email": [],
+      "personal_email": [
+          "pavanvm456@gmail.com"
+      ],
+      "phone": [
+          "6825607161"
+      ],
+      "github": [],
+      "twitter": [],
+      "full_name": "Pavan Meragu",
+      "headline": "Software Development Engineer 2 at Expedia Group | MS CS at UTA",
+      "industry": "Computer Software",
+      "company": {
+          "name": "Expedia Group",
+          "url": "https://www.linkedin.com/company/expedia",
+          "linkedin_company_id": 2751,
+          "domain": "expediagroup.com",
+          "email_domain": "expediagroup.com",
+          "overview": "At Expedia Group (NASDAQ: EXPE), we believe travel is a force for good – it opens minds, builds connections, and bridges divides. We create transformative tech that enables unforgettable experiences for all travelers, everywhere. Our trusted family of brands are known and loved by millions, and we power more trips than ​anyone else.​ To learn more about our vision of a more open world through travel, visit www.expediagroup.com. \n\nWe're committed to providing an inclusive and accessible recruiting experience for candidates with disabilities, or other physical or mental health conditions. If you require an accommodation or adjustment for any part of the application or recruitment process, please let us know by completing our Accommodation Request Form or contacting your recruiter.\n\nEmployment opportunities and job offers at Expedia Group will always come from Expedia Group's Talent Acquisition and hiring teams. Never provide sensitive, personal information to someone unless you're confident about who they are. We do not send job offers via email, or any other messaging tools, to individuals we have not had prior contact with. Our email domain is @expediagroup.com. Our official careers website, where you can to find and apply for job openings, is careers.expediagroup.com/jobs. \n\nIf you require customer service support to cancel, change or ask about a refund for your trip, you can connect with our 24/7 Virtual Agent through the following links:\nExpedia: https://www.expedia.com/helpcenter\nHotels.com: https://service.hotels.com/en-us/\nVrbo: https://help.vrbo.com/\nFor additional assistance, direct message us on Twitter @ExpediaHelp with your itinerary number and email address: https://twitter.com/ExpediaHelp",
+          "type": "Public Company",
+          "size": 10001,
+          "country": "United States",
+          "revenue": 9600000000,
+          "founded_at": 0,
+          "industry": "Computer Software",
+          "headquarter": "1111 Expedia Group Way W., Seattle, WA, 98119, US",
+          "website": "https://careers.expediagroup.com/",
+          "logo_url": "https://images.contactout.com/companies/829885ab83226d804fabb39b12b22c2c",
+          "specialties": [
+              "Technology",
+              "Travel",
+              "Ecommerce",
+              "Sales",
+              "Hotels",
+              "Big Data",
+              "Mobile",
+              "Business Development",
+              "SEO",
+              "SEM",
+              "Hospitality",
+              "Airfare"
+          ],
+          "locations": [
+              "65 Rue de la Victoire, Paris, IdF, 75009, FR",
+              "407 St John Street, London, England, EC1V 4RW, GB",
+              "38 Beach Rd, Singapore, Singapore, 189767, SG",
+              "701 Brickell Ave, Miami, FL, 33131, US",
+              "1111 Expedia Group Way W., Seattle, WA, 98119, US",
+              "63 Rue de Bresoles, Montreal, QC, H2Y 1V7, CA",
+              "1 Martin Pl, Sydney, New South Wales, 2000, AU",
+              "480 Queen St, Brisbane City, Queensland, 4000, AU",
+              "DLF City Phase 1 Road, Gurgaon, Haryana, 122002, IN"
+          ]
+      },
+      "location": "Greater Chicago Area",
+      "country": "United States",
+      "summary": "Actively looking for a full-time opportunity with having around 1+ years of professional experience in Software Development and 6 years of academic experience.",
+      "experience": [
+          {
+              "start_date": "20223",
+              "end_date": "00",
+              "title": "Software Development Engineer 2",
+              "summary": "",
+              "locality": "Greater Chicago Area",
+              "company_name": "Expedia Group",
+              "start_date_year": 2022,
+              "start_date_month": 3,
+              "end_date_year": 0,
+              "end_date_month": 0,
+              "is_current": true
+          },
+          {
+              "start_date": "20213",
+              "end_date": "20223",
+              "title": "Software Engineer",
+              "summary": "•\tGained hands-on experience in Java full-stack training with technologies like Java, J2EE, Angular.js, Node.js, and MongoDB.\n•\tLed the team to develop a Java web Banking application with checking and savings account functionalities of Cashier and Customer, implemented Agile methodologies in the J2EE environment by following MVC architecture.\n•\tDeveloped a food ordering website with Angular.js in Visual Studio and integrated with RESTful APIs of 100+ datasets.\n•\tCollaborated with a team to work on a News reporting website based on user's current location using MEAN stack.",
+              "locality": "United States",
+              "company_name": "Tata Consultancy Services",
+              "start_date_year": 2021,
+              "start_date_month": 3,
+              "end_date_year": 2022,
+              "end_date_month": 3,
+              "is_current": false
+          },
+          {
+              "start_date": "20199",
+              "end_date": "20205",
+              "title": "Graduate Research Associate",
+              "summary": "•\tAdvanced the UTA website and fixed bugs, implemented UI enhancements via Dreamweaver.\n•\tUpdated the template and page elements on UTA web application using HTML, CSS, JavaScript, and PHP.\n•\tGenerating and validating forms on the website using Adobe Acrobat forms.\n•\tAnalyzed 500+ datasets of university students using Excel tools and preparing SQL reports monthly.\n•\tProvided Technical and Desktop support to office colleagues, 1 – 2 hours per day.",
+              "locality": "Arlington",
+              "company_name": "The University of Texas at Arlington",
+              "start_date_year": 2019,
+              "start_date_month": 9,
+              "end_date_year": 2020,
+              "end_date_month": 5,
+              "is_current": false
+          },
+          {
+              "start_date": "20171",
+              "end_date": "20177",
+              "title": "Full-Stack Developer",
+              "summary": "•\tDesigned brand-new pharmacy online market mockups using Adobe Illustrator which structured the website template.\n•\tBuilt the website from the ground up in WordPress using mainly Angular.js, PHP, CSS, Firebase, and RESTful web service which helped in automating the process of registering patients and distributing medicines.",
+              "locality": "Surat, India",
+              "company_name": "Indian Institute of Management Ahmedabad",
+              "start_date_year": 2017,
+              "start_date_month": 1,
+              "end_date_year": 2017,
+              "end_date_month": 7,
+              "is_current": false
+          }
+      ],
+      "education": [
+          {
+              "field_of_study": "Computer Science",
+              "description": null,
+              "start_date_year": "2018",
+              "end_date_year": "2020",
+              "degree": "Master's degree",
+              "school_name": "The University of Texas at Arlington"
+          },
+          {
+              "field_of_study": "Computer Engineering",
+              "description": null,
+              "start_date_year": "2014",
+              "end_date_year": "2018",
+              "degree": "Bachelor of Technology (BTech)",
+              "school_name": "National Institute of Technology Surat"
+          }
+      ],
+      "skills": [
+          "Python (Programming Language)",
+          "React.js",
+          "Django",
+          "Software Development",
+          "Web Development",
+          "Research",
+          "Graphic Design",
+          "Project Management",
+          "Strategic Planning",
+          "Sales",
+          "Social Media",
+          "Front-end Development",
+          "User Interface Design",
+          "Android Development",
+          "User Experience (UX)",
+          "Artificial Intelligence (AI)",
+          "Application Development",
+          "Object-Oriented Programming (OOP)",
+          "Algorithms",
+          "Responsive Web Design",
+          "Bootstrap",
+          "AngularJS",
+          "Node.js",
+          "HTML",
+          "PHP",
+          "MySQL",
+          "CSS",
+          "JavaScript",
+          "jQuery",
+          "C",
+          "C++",
+          "Java",
+          "Android",
+          "Photoshop",
+          "Matlab",
+          "Microsoft Excel",
+          "Cascading Style Sheets (CSS)",
+          "Microsoft Office",
+          "SQL",
+          "HTML5",
+          "REST API",
+          "Leadership",
+          "Public Speaking",
+          "Training",
+          "Back-End Web Development",
+          "Web Application Development",
+          "NoSQL",
+          "Full-Stack Development",
+          "Agile Methodologies",
+          "Linux"
+      ],
+      "profile_picture_url": "https://images.contactout.com/profiles/8daa4fbfdf7eb5055857cc0c680aad2e",
+      "updated_at": "2025-02-14 00:00:00",
+      "followers": 720
+  }
+}
+
 export default function Home() {
   // State management
   const [formData, setFormData] = useState<FormData>({
@@ -168,6 +362,12 @@ export default function Home() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [apiResponse, setApiResponse] = useState<ApiResponseType | null>(null);
+  const [contactStates, setContactStates] = useState<{
+    [key: string]: {
+      showOptions: boolean;
+      contactInfo: { email: string[]; phone: string[]; } | null;
+    };
+  }>({});
 
   // Form handlers
   const handleCompanyNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -276,6 +476,7 @@ export default function Home() {
           ];
         }
       }
+
       
       // Detailed logging of the response
       console.log('RECEIVED DATA FROM BACKEND:', JSON.stringify(data, null, 2));
@@ -297,14 +498,147 @@ export default function Home() {
       setIsLoading(false);
     }
   };
+  
+  
+      
+const router = useRouter();
+
+  // Contact button functionality
+  const fetchContactDetails = async (profileUrl: string) => {
+    if (!profileUrl) {
+      console.error('Profile URL is undefined');
+      return;
+    }
+    
+    try {
+      // Make the actual API call to ContactOut
+      const response = await fetch(`https://api.contactout.com/v2/contacts/profile-url?profile_url=${encodeURIComponent(profileUrl)}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer 6e4a9c7f-3a2e-4a0c-a1b2-0f8c2f6e4d3b',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Contact response:', data); // Debug log
+      
+      if (data.email && data.phone) {
+        setContactStates(prev => ({
+          ...prev,
+          [profileUrl]: {
+            showOptions: true,
+            contactInfo: {
+              email: Array.isArray(data.email) ? data.email : [data.email],
+              phone: Array.isArray(data.phone) ? data.phone : [data.phone]
+            }
+          }
+        }));
+        console.log('Contact info set for:', profileUrl); // Debug log
+      } else {
+        console.error('No email or phone in response');
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error fetching contact details:', error);
+      // Fallback to mock data for testing
+      const mockResponse = Contactresponse.profile;
+      setContactStates(prev => ({
+        ...prev,
+        [profileUrl]: {
+          showOptions: true,
+          contactInfo: {
+            email: mockResponse.email,
+            phone: mockResponse.phone
+          }
+        }
+      }));
+      return null;
+    }
+  };
+
+  // Contact Button Component
+  const ContactButton = ({ profileUrl }: { profileUrl: string }) => {
+    const contactState = contactStates[profileUrl];
+    
+    return (
+      <div className="relative">
+        {!contactState?.showOptions ? (
+          <button 
+            onClick={async () => {
+              console.log('Profile URL:', profileUrl); // Debug log
+              await fetchContactDetails(profileUrl);
+            }}
+            className='px-4 py-2 bg-blue-600 rounded-lg text-white text-sm font-medium hover:bg-blue-700 transition-all duration-300'
+          >
+            Connect
+          </button>
+        ) : (
+          <div className="flex space-x-2 animate-fade-in">
+            {contactState.contactInfo?.email?.[0] && (
+              <a
+                href={`mailto:${contactState.contactInfo.email[0]}`}
+                className="px-3 py-2 bg-green-500 hover:bg-green-600 rounded-lg text-white text-sm font-medium transition-all duration-300 flex items-center space-x-1"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Email</span>
+              </a>
+            )}
+            {contactState.contactInfo?.phone?.[0] && (
+              <a
+                href={`tel:${contactState.contactInfo.phone[0]}`}
+                className="px-3 py-2 bg-indigo-500 hover:bg-indigo-600 rounded-lg text-white text-sm font-medium transition-all duration-300 flex items-center space-x-1"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <span>Call</span>
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <main className="min-h-screen bg-apple-gray-50">
       {/* Header */}
       <header className="border-b border-apple-gray-200 bg-white py-6 shadow-sm">
-        <div className="mx-auto max-w-5xl px-8">
-          <h1 className="text-3xl font-medium tracking-tight text-apple-gray-500">Company Intelligence</h1>
-          <p className="mt-1 text-sm text-apple-gray-300">Gather comprehensive insights about your target company</p>
+        <div className="mx-auto max-w-5xl flex px-8">
+          <div className='w-full'>
+            <h1 className="text-3xl font-medium tracking-tight text-apple-gray-500">Company Intelligence</h1>
+            <p className="mt-1 text-sm text-apple-gray-300">Gather comprehensive insights about your target company</p>
+          </div>
+          <div className="flex items-center">
+            <button
+              onClick={()=>{router.push("https://meresu-jsw-backend.onrender.com/")}}
+              className="inline-flex items-center gap-2 rounded-md bg-apple-gray-500 px-4 py-2 text-xs font-medium text-white shadow-sm hover:bg-apple-gray-400 focus:outline-none focus:ring-2 focus:ring-apple-gray-300 focus:ring-offset-2 disabled:opacity-50 transition-all duration-300"
+            >
+              <svg 
+                className="h-4 w-4" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" 
+                />
+              </svg>
+              Lead Discovery System
+            </button>
+          </div>
         </div>
       </header>
 
@@ -491,23 +825,17 @@ export default function Home() {
                     className="overflow-hidden rounded-lg border border-apple-gray-200 bg-white shadow-sm hover:shadow-md"
                   >
                     <div className="border-b border-apple-gray-100 bg-apple-gray-50 px-4 py-3">
+                     <div className='w-full flex justify-between items-center'>
                       <h3 className="font-medium text-apple-gray-500">
                         {apiResponse.linkedInData.results[0].profileData?.data?.[0]?.fullName || 
                          apiResponse.linkedInData.results[0].input?.name || 
                          'Name not available'}
                       </h3>
-                      <p className="text-xs text-apple-gray-300">
-                        {apiResponse.linkedInData.results[0].profileData?.data?.[0]?.headline || 'Title not available'}
-                      </p>
-                      <a 
-                        href={apiResponse.linkedInData.results[0].link || 
-                             apiResponse.linkedInData.results[0].profileData?.data?.[0]?.linkedinUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="mt-1 block text-xs text-blue-500 hover:underline"
-                      >
-                        View LinkedIn Profile
-                      </a>
+                      <ContactButton 
+                        profileUrl={apiResponse.linkedInData.results[0].link || 
+                                   apiResponse.linkedInData.results[0].profileData?.data?.[0]?.linkedinUrl || ''} 
+                      />
+                    </div>
                     </div>
                     <div className="divide-y divide-apple-gray-100">
                       {apiResponse.linkedInData.results[0].profileData?.data?.[0]?.experiences && 
@@ -939,10 +1267,9 @@ export default function Home() {
                 <h2 className="text-2xl font-semibold text-gray-800">Additional Decision Makers</h2>
                 <div className="ml-3 h-px flex-1 bg-gray-200"></div>
               </div>
-              <div className="grid gap-6">
+              <div className="grid grid-cols-3 gap-4">
                 {apiResponse.procurementExecutives && apiResponse.procurementExecutives.results
                   .filter(exec => !exec.error && exec.profileData?.data?.[0])
-                  // Filter out duplicates based on profile URL
                   .filter((exec, index, self) => 
                     index === self.findIndex((e) => e.profileUrl === exec.profileUrl)
                   )
@@ -951,46 +1278,39 @@ export default function Home() {
                     if (!profileData) return null;
                     
                     return (
-                      <div key={executive.profileUrl} className="rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
-                        <div className="border-b border-gray-100 p-6">
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <h3 className="text-lg font-medium text-gray-900">{profileData.fullName}</h3>
-                              <p className="mt-1 text-sm text-gray-600">{profileData.headline}</p>
-                              <div className="mt-4 space-y-3">
-                                <div className="space-y-1">
-                                  <h4 className="text-xs font-medium uppercase tracking-wide text-gray-500">RELEVANCE</h4>
-                                  <p className="text-sm text-gray-700">Procurement decision maker at {profileData.experiences?.[0]?.subtitle || 'Company'}</p>
-                                </div>
-                                <div className="space-y-1">
-                                  <h4 className="text-xs font-medium uppercase tracking-wide text-gray-500">CONTACT</h4>
-                                  <a 
-                                    href={executive.profileUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
-                                  >
-                                    Connect on LinkedIn
-                                  </a>
-                                </div>
-                              </div>
+                      <div key={executive.profileUrl} className="bg-white rounded-lg p-6">
+                        <div className="flex justify-between items-center">
+                          <div className="space-y-1">
+                            <h3 className="text-lg font-medium text-gray-900">{profileData.fullName}</h3>
+                           
+                            <div className="flex items-center space-x-2">
+                              <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
+                                Procurement Executive
+                              </span>
                             </div>
-                            <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700">
-                              Procurement Executive
-                            </span>
                           </div>
-                    </div>
-                        {profileData.experiences && profileData.experiences.length > 0 && (
-                          <div className="bg-gray-50 px-6 py-4">
-                            <h4 className="text-xs font-medium uppercase tracking-wide text-gray-500">Current Role</h4>
-                            <p className="mt-1 text-sm text-gray-900">
-                              {profileData.experiences[0].title}
-                              {profileData.experiences[0].subtitle && (
-                                <span className="text-gray-600"> at {profileData.experiences[0].subtitle}</span>
-                              )}
+                          <ContactButton profileUrl={executive.profileUrl} />
+                        </div>
+
+                        <div className="mt-4 space-y-4">
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-500">RELEVANCE</h4>
+                            <p className="mt-1 text-sm text-gray-700">
+                              Procurement decision maker at {profileData.experiences?.[0]?.subtitle || 'Company'}
                             </p>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-500">CONTACT</h4>
+                            <a 
+                              href={executive.profileUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-1 text-sm text-blue-600 hover:text-blue-800 hover:underline"
+                            >
+                              Connect on LinkedIn
+                            </a>
+                    </div>
                       </div>
-                        )}
                       </div>
                     );
                   })}
@@ -1003,57 +1323,19 @@ export default function Home() {
                 )}
               </div>
             </section>
-
-            {/* Procurement Executives */}
-            {/* {apiResponse.procurementExecutives && apiResponse.procurementExecutives.results && (
-              <section>
-                <div className="mb-4 flex items-center justify-between">
-                  <h2 className="text-xl font-medium text-apple-gray-500">Procurement Executives</h2>
-                  <div className="ml-3 h-px flex-1 bg-apple-gray-200"></div>
-                </div>
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {apiResponse.procurementExecutives.results
-                    .filter(exec => !exec.error && exec.profileData?.data?.[0])
-                    // Filter out duplicates based on profile URL
-                    .filter((exec, index, self) => 
-                      index === self.findIndex((e) => e.profileUrl === exec.profileUrl)
-                    )
-                    .map((executive, index) => {
-                      const profileData = executive.profileData?.data?.[0];
-                      if (!profileData) return null;
-                      
-                      return (
-                        <motion.div
-                          key={executive.profileUrl} // Use profile URL as key instead of index
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="overflow-hidden rounded-lg border border-apple-gray-200 bg-white shadow-sm hover:shadow-md"
-                        >
-                          <div className="border-b border-apple-gray-100 bg-apple-gray-50 px-4 py-3">
-                            <h3 className="font-medium text-apple-gray-500">
-                              {profileData.fullName}
-                            </h3>
-                            <p className="text-xs text-apple-gray-300">
-                              {profileData.headline}
-                            </p>
-                            <a 
-                              href={executive.profileUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="mt-1 block text-xs text-blue-500 hover:underline"
-                            >
-                              View Profile
-                            </a>
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                </div>
-              </section>
-            )} */}
           </motion.div>
         )}
       </div>
     </main>
   );
 } 
+
+
+function setContactInfo(arg0: { email: string[]; phone: string[]; }) {
+  throw new Error('Function not implemented.');
+}
+
+function setShowContactOptions(arg0: boolean) {
+  throw new Error('Function not implemented.');
+}
+
