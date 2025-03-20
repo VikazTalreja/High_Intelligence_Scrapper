@@ -233,6 +233,50 @@ export default function Home() {
 
       const data = await response.json();
       
+      // Process selected competitors for otherCompetitor analysis
+      const selectedCompetitors = formData.competitors.filter(comp => comp.selected);
+      
+      if (selectedCompetitors.length > 0) {
+        const otherCompetitorAnalyses = await Promise.all(
+          selectedCompetitors.map(async (competitor) => {
+            try {
+              const otherCompResponse = await fetch('https://high-intelligence-backend.onrender.com/api/othercompetitor/analyze', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  companyName: formData.companyName,
+                  competitorName: competitor.name,
+                  dataType: 'TMT' // You can modify this based on your needs
+                }),
+              });
+
+              const otherCompData = await otherCompResponse.json();
+              if (otherCompData.success) {
+                return {
+                  competitor: competitor.name,
+                  ...otherCompData.analysis
+                };
+              }
+              return null;
+            } catch (error) {
+              console.error(`Error analyzing competitor ${competitor.name}:`, error);
+              return null;
+            }
+          })
+        );
+
+        // Filter out null values and combine with existing CompetitorsEngagement
+        const validAnalyses = otherCompetitorAnalyses.filter(analysis => analysis !== null);
+        if (validAnalyses.length > 0) {
+          data.CompetitorsEngagement = [
+            ...(data.CompetitorsEngagement || []),
+            ...validAnalyses
+          ];
+        }
+      }
+      
       // Detailed logging of the response
       console.log('RECEIVED DATA FROM BACKEND:', JSON.stringify(data, null, 2));
       console.log('DATA STRUCTURE:');
@@ -243,6 +287,7 @@ export default function Home() {
       console.log('- marketData:', data.marketData ? 'Present' : 'Not present');
       console.log('- aiInsights:', data.aiInsights ? 'Present' : 'Not present');
       console.log('- errors:', data.errors ? `${data.errors.length} errors` : 'No errors');
+      console.log('- CompetitorsEngagement:', data.CompetitorsEngagement ? `${data.CompetitorsEngagement.length} competitors` : 'No competitors');
       
       // Set response data
       setApiResponse(data);
@@ -825,7 +870,7 @@ export default function Home() {
                           </div>
                           <div className="border rounded-lg p-4">
                             <p className="text-sm font-medium mb-2">Product Range</p>
-                            <p className="text-base">{engagement.productQuality.productRangeAvailability   ?? "N/A"y}</p>
+                            <p className="text-base">{engagement.productQuality.productRangeAvailability  ?? "N/A"}</p>
                           </div>
                         </div>
                       </div>
@@ -889,14 +934,12 @@ export default function Home() {
             </section>
 
             {/* Alternate Decision Makers */}
-            {(apiResponse.linkedInData && apiResponse.linkedInData.results.length > 1) || 
-             (apiResponse.procurementExecutives && apiResponse.procurementExecutives.executivesFound > 0) ? (
             <section>
               <div className="mb-6 flex items-center">
                 <h2 className="text-2xl font-semibold text-gray-800">Additional Decision Makers</h2>
                 <div className="ml-3 h-px flex-1 bg-gray-200"></div>
               </div>
-              {/* <div className="grid gap-6">
+              <div className="grid gap-6">
                 {apiResponse.procurementExecutives && apiResponse.procurementExecutives.results
                   .filter(exec => !exec.error && exec.profileData?.data?.[0])
                   // Filter out duplicates based on profile URL
@@ -908,30 +951,39 @@ export default function Home() {
                     if (!profileData) return null;
                     
                     return (
-                      <div key={executive.profileUrl} className="rounded-xl border border-gray-200 bg-white">
+                      <div key={executive.profileUrl} className="rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
                         <div className="border-b border-gray-100 p-6">
                           <div className="flex justify-between items-start">
                             <div>
-                              <h3 className="text-lg font-medium">{profileData.fullName}</h3>
+                              <h3 className="text-lg font-medium text-gray-900">{profileData.fullName}</h3>
                               <p className="mt-1 text-sm text-gray-600">{profileData.headline}</p>
-                              <span className="mt-2 inline-block rounded-full border border-gray-200 px-3 py-1 text-sm">
-                                Procurement Executive
-                              </span>
+                              <div className="mt-4 space-y-3">
+                                <div className="space-y-1">
+                                  <h4 className="text-xs font-medium uppercase tracking-wide text-gray-500">RELEVANCE</h4>
+                                  <p className="text-sm text-gray-700">Procurement decision maker at {profileData.experiences?.[0]?.subtitle || 'Company'}</p>
+                                </div>
+                                <div className="space-y-1">
+                                  <h4 className="text-xs font-medium uppercase tracking-wide text-gray-500">CONTACT</h4>
+                                  <a 
+                                    href={executive.profileUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
+                                  >
+                                    Connect on LinkedIn
+                                  </a>
+                                </div>
+                              </div>
                             </div>
-                            <a 
-                              href={executive.profileUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium hover:bg-gray-50"
-                            >
-                              View Profile
-                            </a>
+                            <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700">
+                              Procurement Executive
+                            </span>
                           </div>
                     </div>
                         {profileData.experiences && profileData.experiences.length > 0 && (
-                          <div className="p-6">
-                            <h4 className="text-sm font-medium mb-2">Current Role</h4>
-                            <p className="text-base">
+                          <div className="bg-gray-50 px-6 py-4">
+                            <h4 className="text-xs font-medium uppercase tracking-wide text-gray-500">Current Role</h4>
+                            <p className="mt-1 text-sm text-gray-900">
                               {profileData.experiences[0].title}
                               {profileData.experiences[0].subtitle && (
                                 <span className="text-gray-600"> at {profileData.experiences[0].subtitle}</span>
@@ -949,12 +1001,11 @@ export default function Home() {
                     <p className="text-lg text-gray-500">No additional decision makers identified</p>
                     </div>
                 )}
-              </div> */}
+              </div>
             </section>
-            ) : null}
 
             {/* Procurement Executives */}
-            {apiResponse.procurementExecutives && apiResponse.procurementExecutives.results && (
+            {/* {apiResponse.procurementExecutives && apiResponse.procurementExecutives.results && (
               <section>
                 <div className="mb-4 flex items-center justify-between">
                   <h2 className="text-xl font-medium text-apple-gray-500">Procurement Executives</h2>
@@ -999,7 +1050,7 @@ export default function Home() {
                     })}
                 </div>
               </section>
-            )}
+            )} */}
           </motion.div>
         )}
       </div>
