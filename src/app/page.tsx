@@ -194,7 +194,7 @@ export default function Home() {
       console.log('SENDING DATA TO BACKEND:', JSON.stringify(analysisData, null, 2));
 
       // Call the analysis API endpoint
-      const response = await fetch('http://localhost:5000/api/analysis/run', {
+      const response = await fetch('https://high-intelligence-backend.onrender.com/api/analysis/run', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
