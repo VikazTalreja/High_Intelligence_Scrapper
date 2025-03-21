@@ -620,7 +620,7 @@ const router = useRouter();
           </div>
           <div className="flex items-center">
             <button
-              onClick={()=>{router.push("https://meresu-jsw-backend.onrender.com/")}}
+              onClick={()=>{window.open("https://meresu-jsw-backend.onrender.com/", "_blank", "noopener,noreferrer")}}
               className="inline-flex items-center gap-2 rounded-md bg-apple-gray-500 px-4 py-2 text-xs font-medium text-white shadow-sm hover:bg-apple-gray-400 focus:outline-none focus:ring-2 focus:ring-apple-gray-300 focus:ring-offset-2 disabled:opacity-50 transition-all duration-300"
             >
               <svg 
@@ -1008,10 +1008,8 @@ const router = useRouter();
                               <div key={index} className="flex items-start space-x-2">
                                 <div className="w-2 h-2 mt-2 rounded-full bg-gray-300"></div>
                                 <div>
-                                  <p className="text-sm font-medium text-apple-gray-500 whitespace-nowrap">{director.Name}</p>
-                                  {director.DIN !== "0" && (
-                                    <p className="text-xs text-apple-gray-400">DIN: {director.DIN}</p>
-                                  )}
+                                  <span className="text-sm font-medium text-apple-gray-500">{director.Name}</span>
+                                  
                                 </div>
                               </div>
                             ))}
@@ -1148,7 +1146,7 @@ const router = useRouter();
                     {/* Header */}
                     <div className="border-b border-gray-200 px-6 py-4">
                       <h3 className="text-xl font-semibold">
-                        JSW Steel vs {engagement?.competitor}
+                        {index === 0 ? `JSW Steel vs ${apiResponse.companyData?.data?.Basic_Company_Details?.["Legal Name"]}` : `JSW Steel vs ${engagement?.competitor}`}
                       </h3>
                     </div>
                     
